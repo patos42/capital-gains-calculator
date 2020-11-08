@@ -1,0 +1,10 @@
+Trades,Header,DataDiscriminator,Asset Category,Currency,Account,Symbol,Date/Time,Exchange,Quantity,T. Price,Proceeds,Comm in AUD,Code
+Trades,Data,Order,Forex,USD,U111111,AUD.USD,"2019-07-01, 14:48:19",-,"31,944",0.70035,-22371.9804,-2.8484,
+Trades,Data,Trade,Forex,USD,U111111,AUD.USD,"2019-07-01, 14:48:19",IDEALFX,"31,944",0.70035,-22371.9804,-2.8484,
+Trades,Data,Order,Forex,USD,U111111,AUD.USD,"2019-07-20, 08:27:20",-,42.4132,0.70415,-29.86525478,0,
+Trades,Data,Trade,Forex,USD,U111111,AUD.USD,"2019-07-20, 08:27:20",IDEALFX,42.4132,0.70415,-29.86525478,0,
+Trades,Data,Order,Forex,USD,U111111,AUD.USD,"2019-08-07, 08:00:49",-,1.0354,0.67606,-0.699992524,0,
+Trades,Data,Trade,Forex,USD,U111111,AUD.USD,"2019-08-07, 08:00:49",IDEALFX,1.0354,0.67606,-0.699992524,0,
+Trades,SubTotal,,Forex,USD,AUD.USD,,,,31987.4486,,-22402.545647304,-2.8484,
+Trades,Total,,Forex,USD,,,,,,,-22402.545647304,-2.8484, 
+Trades,Total,,Forex,AUD,,,,,,,-32165.172653877,-2.8484, 
