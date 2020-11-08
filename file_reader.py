@@ -14,12 +14,14 @@ class FileReader:
                     # print(row)
                     date_time = datetime.datetime.strptime(row["Date/Time"],
                                                            '%Y-%m-%d, %H:%M:%S')  # 2019-07-01, 14:48:19
+                    price: float = float(row["T. Price"].replace(",",""))
+                    quantity: float = float(row["Quantity"].replace(",",""))
                     # print(date_time)
-                    print(row["Date/Time"])
+                    # print(row["Date/Time"])
                     trades.append(Trade(row["Symbol"],
                                         date_time,
-                                        row["T. Price"],
-                                        row["Quantity"]))
+                                        price,
+                                        quantity))
         return trades
 
         # Read CSV
