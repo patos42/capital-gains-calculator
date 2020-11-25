@@ -1,32 +1,46 @@
-from model import *
-from typing import TypedDict
 from typing import List
-from collections import OrderedDict
+
+from model import *
 
 _ROUNDING_TOLERANCE = 1e-6
 
-class CurrentBalance(TypedDict):
-    asset_code : str
-    balance : float
-#
-# class TradesByDate(TypedDict):
-#     date_time: datetime
-#     trade : Trade
+
+class CurrentBalance(dict):
+    asset_code: str
+    balance: float
+
+
+# Records matched buy/sell trades.
+class MatchedInventory:
+    def __init__(self,
+                 asset_code: str,  # ToDo: change this to just accept two trades and a quantity.
+                 buy_date: datetime,
+                 buy_price: float,
+                 sell_date: datetime,
+                 sell_price: float,
+                 quantity: float):
+        self.asset_code: Final = asset_code
+        self.buy_date: Final = buy_date
+        self.buy_price: Final = buy_price
+        self.sell_date: Final = sell_date
+        self.sell_price: Final = sell_price
+        self.quantity: Final = quantity
 
 
 class FirstInFirstOutInventory:
     def _record_matches(self,
-                       current_balance: CurrentBalance,
-                       past_trades: 'OrderedDict[datetime, Trade]',
-                       trade: Trade) -> List[MatchedInventory]:
-        matched_inventory : List[MatchedInventory] = []
+                        current_balance: CurrentBalance,
+                        past_trades: OrderedDict[datetime, Trade],
+                        trade: Trade) -> List[MatchedInventory]:
+        matched_inventory: List[MatchedInventory] = []
         trade_quantity_remaining = trade.quantity
         if trade.quantity > _ROUNDING_TOLERANCE:  # If buy trade, check if short ToDo: Collapse this and next if statement. Use negative quantity to signify closing shorts.
             if current_balance[trade.asset_code] < -_ROUNDING_TOLERANCE:
                 for past_trade in past_trades.values():
-                    if past_trade.quantity < -_ROUNDING_TOLERANCE: # Skip other buy orders.
+                    if past_trade.quantity < -_ROUNDING_TOLERANCE:  # Skip other buy orders.
                         closed_amount_past_trade = min(trade_quantity_remaining, -past_trade.quantity)
-                        closed_amount_current_balance = min(trade_quantity_remaining, -current_balance[trade.asset_code])
+                        closed_amount_current_balance = min(trade_quantity_remaining,
+                                                            -current_balance[trade.asset_code])
                         closed_amount = min(closed_amount_past_trade, closed_amount_current_balance)
                         current_balance[trade.asset_code] += closed_amount
                         past_trade.quantity += closed_amount
@@ -45,15 +59,16 @@ class FirstInFirstOutInventory:
 
                     if abs(trade_quantity_remaining) < _ROUNDING_TOLERANCE:
                         break
-            else: # Not short, so just add to inventory.
+            else:  # Not short, so just add to inventory.
                 current_balance[trade.asset_code] += trade_quantity_remaining
-        if trade.quantity < -_ROUNDING_TOLERANCE: # Sell trade. Check if long.
+        if trade.quantity < -_ROUNDING_TOLERANCE:  # Sell trade. Check if long.
             trade_quantity_remaining = trade.quantity
             if current_balance[trade.asset_code] > _ROUNDING_TOLERANCE:
                 for past_trade in past_trades.values():
                     if past_trade.quantity > _ROUNDING_TOLERANCE:  # Skip other sell orders.
                         closed_amount_past_trade = min(-trade_quantity_remaining, past_trade.quantity)
-                        closed_amount_current_balance = min(-trade_quantity_remaining, current_balance[trade.asset_code])
+                        closed_amount_current_balance = min(-trade_quantity_remaining,
+                                                            current_balance[trade.asset_code])
                         closed_amount = min(closed_amount_past_trade, closed_amount_current_balance)
                         current_balance[trade.asset_code] -= closed_amount
                         past_trade.quantity -= closed_amount
@@ -75,21 +90,22 @@ class FirstInFirstOutInventory:
             else:  # Not long, so just add to inventory.
                 current_balance[trade.asset_code] += trade_quantity_remaining
 
-        if abs(trade_quantity_remaining) > _ROUNDING_TOLERANCE: # If trade not fully matched, then remainder gets added to inventory.
+        # If trade not fully matched, then remainder gets added to inventory.
+        if abs(trade_quantity_remaining) > _ROUNDING_TOLERANCE:
             past_trades[trade.date] = trade
 
         return matched_inventory
 
     def match_trades(self, trades: List[Trade]) -> List[MatchedInventory]:
         sorted_trades = sorted(trades, key=lambda t: t.date)
-        matched_inventory : List[MatchedInventory] = []
-        current_balance = CurrentBalance() # str : float
-        inventory = Inventory() # str : {datetime, float}
+        matched_inventory: List[MatchedInventory] = []
+        current_balance : CurrentBalance = CurrentBalance() # str : float
+        inventory : Inventory = Inventory()  # str : {datetime, float}
 
         for trade in sorted_trades:
             if trade.asset_code not in inventory:
                 inventory[trade.asset_code] = OrderedDict()
-            if len(inventory[trade.asset_code]) == 0: # Simple case. No other trades, just add it to inventory.
+            if len(inventory[trade.asset_code]) == 0:  # Simple case. No other trades, just add it to inventory.
                 inventory[trade.asset_code][trade.date] = trade
                 current_balance[trade.asset_code] = trade.quantity
             else:

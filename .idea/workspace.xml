@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="935ad55f-887a-4d2e-a8d2-5dfa31cf203f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/CapitalGainsTaxCalculator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CapitalGainsTaxCalculator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_reader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventory_accounting_methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_accounting_methods.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventory_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,18 +28,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1juW5lcdOrIIwhCk0lQueCdBhwD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.IntegrationTests.test_run_test_file">
+  <component name="RunManager" selected="Python tests.Unittests for tests.IntegrationTests">
     <configuration name="Unittests for tests.FifoInventoryTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -53,7 +56,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests.FifoInventoryTests.test_bought_in_two" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests.FifoInventoryTests.test_basic" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -63,21 +66,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_bought_in_two&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for tests.FifoInventoryTests.test_bought_in_two_sold_in_one" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="CapitalGainsTaxCalculator" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_bought_in_two_sold_in_one&quot;" />
+      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_basic&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -95,7 +84,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests.IntegrationTests.test_run_test_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests.IntegrationTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -105,32 +94,35 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.IntegrationTests.test_run_test_file&quot;" />
+      <option name="_new_target" value="&quot;tests.IntegrationTests&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for tests.TestFileReader" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="CapitalGainsTaxCalculator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.TestFileReader&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for tests.IntegrationTests.test_run_test_file" />
+        <item itemvalue="Python tests.Unittests for tests.IntegrationTests" />
         <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests" />
+        <item itemvalue="Python tests.Unittests for tests.TestFileReader" />
+        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_basic" />
         <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_complex_profile" />
-        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_bought_in_two_sold_in_one" />
-        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_bought_in_two" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -145,95 +137,108 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="797" y="336" key="#com.intellij.ide.util.MemberChooser" timestamp="1604655608237">
-      <screen x="49" y="23" width="1871" height="1177" />
+    <state x="800" y="336" key="#com.intellij.ide.util.MemberChooser" timestamp="1606210791129">
+      <screen x="54" y="23" width="1866" height="1177" />
     </state>
     <state x="797" y="336" key="#com.intellij.ide.util.MemberChooser/49.23.1871.1177@49.23.1871.1177" timestamp="1604655608237" />
+    <state x="800" y="336" key="#com.intellij.ide.util.MemberChooser/54.23.1866.1177@54.23.1866.1177" timestamp="1606210791129" />
+    <state x="675" y="356" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1606210290583">
+      <screen x="54" y="23" width="1866" height="1177" />
+    </state>
+    <state x="675" y="356" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/54.23.1866.1177@54.23.1866.1177" timestamp="1606210290583" />
+    <state x="598" y="187" key="CommitChangelistDialog2" timestamp="1606262320569">
+      <screen x="51" y="23" width="1869" height="1177" />
+    </state>
+    <state x="598" y="187" key="CommitChangelistDialog2/51.23.1869.1177@51.23.1869.1177" timestamp="1606262320569" />
     <state x="772" y="374" key="FileChooserDialogImpl" timestamp="1604818887667">
       <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state x="772" y="374" key="FileChooserDialogImpl/49.23.1871.1177@49.23.1871.1177" timestamp="1604818887667" />
-    <state width="1844" height="328" key="GridCell.Tab.0.bottom" timestamp="1604837132361">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.bottom" timestamp="1606264247081">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.bottom/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053416" />
     <state width="1850" height="328" key="GridCell.Tab.0.bottom/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737828" />
+    <state width="1848" height="328" key="GridCell.Tab.0.bottom/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247081" />
     <state width="1844" height="328" key="GridCell.Tab.0.bottom/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654187" />
-    <state width="1844" height="328" key="GridCell.Tab.0.bottom/54.23.1866.1177@54.23.1866.1177" timestamp="1604834334918" />
+    <state width="1845" height="405" key="GridCell.Tab.0.bottom/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104951" />
     <state width="1844" height="328" key="GridCell.Tab.0.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132361" />
-    <state width="1844" height="328" key="GridCell.Tab.0.center" timestamp="1604837132360">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.center" timestamp="1606264247080">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.center/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053413" />
     <state width="1850" height="328" key="GridCell.Tab.0.center/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737827" />
+    <state width="1848" height="328" key="GridCell.Tab.0.center/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247080" />
     <state width="1844" height="328" key="GridCell.Tab.0.center/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654186" />
-    <state width="1844" height="328" key="GridCell.Tab.0.center/54.23.1866.1177@54.23.1866.1177" timestamp="1604834334916" />
+    <state width="1845" height="405" key="GridCell.Tab.0.center/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104950" />
     <state width="1844" height="328" key="GridCell.Tab.0.center/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132360" />
-    <state width="1844" height="328" key="GridCell.Tab.0.left" timestamp="1604837132349">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.left" timestamp="1606264247079">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.left/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053412" />
     <state width="1850" height="328" key="GridCell.Tab.0.left/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737827" />
+    <state width="1848" height="328" key="GridCell.Tab.0.left/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247079" />
     <state width="1844" height="328" key="GridCell.Tab.0.left/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654185" />
-    <state width="1844" height="328" key="GridCell.Tab.0.left/54.23.1866.1177@54.23.1866.1177" timestamp="1604834334915" />
+    <state width="1845" height="405" key="GridCell.Tab.0.left/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104949" />
     <state width="1844" height="328" key="GridCell.Tab.0.left/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132349" />
-    <state width="1844" height="328" key="GridCell.Tab.0.right" timestamp="1604837132360">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.right" timestamp="1606264247081">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.right/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053415" />
     <state width="1850" height="328" key="GridCell.Tab.0.right/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737828" />
+    <state width="1848" height="328" key="GridCell.Tab.0.right/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247081" />
     <state width="1844" height="328" key="GridCell.Tab.0.right/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654187" />
-    <state width="1844" height="328" key="GridCell.Tab.0.right/54.23.1866.1177@54.23.1866.1177" timestamp="1604834334917" />
+    <state width="1845" height="405" key="GridCell.Tab.0.right/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104950" />
     <state width="1844" height="328" key="GridCell.Tab.0.right/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132360" />
-    <state width="1844" height="405" key="GridCell.Tab.1.bottom" timestamp="1604837019396">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="405" key="GridCell.Tab.1.bottom" timestamp="1606263120010">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.bottom/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053417" />
     <state width="1850" height="405" key="GridCell.Tab.1.bottom/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594535" />
-    <state width="1844" height="405" key="GridCell.Tab.1.bottom/54.23.1866.1177@54.23.1866.1177" timestamp="1604834278153" />
+    <state width="1848" height="405" key="GridCell.Tab.1.bottom/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120010" />
+    <state width="1845" height="405" key="GridCell.Tab.1.bottom/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104952" />
     <state width="1844" height="405" key="GridCell.Tab.1.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1604837019396" />
-    <state width="1844" height="405" key="GridCell.Tab.1.center" timestamp="1604837019395">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="405" key="GridCell.Tab.1.center" timestamp="1606263120008">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.center/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053416" />
     <state width="1850" height="405" key="GridCell.Tab.1.center/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594535" />
-    <state width="1844" height="405" key="GridCell.Tab.1.center/54.23.1866.1177@54.23.1866.1177" timestamp="1604834278152" />
+    <state width="1848" height="405" key="GridCell.Tab.1.center/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120008" />
+    <state width="1845" height="405" key="GridCell.Tab.1.center/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104952" />
     <state width="1844" height="405" key="GridCell.Tab.1.center/55.23.1865.1177@55.23.1865.1177" timestamp="1604837019395" />
-    <state width="1844" height="405" key="GridCell.Tab.1.left" timestamp="1604837019395">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="405" key="GridCell.Tab.1.left" timestamp="1606263120007">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.left/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053416" />
     <state width="1850" height="405" key="GridCell.Tab.1.left/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594534" />
-    <state width="1844" height="405" key="GridCell.Tab.1.left/54.23.1866.1177@54.23.1866.1177" timestamp="1604834278152" />
+    <state width="1848" height="405" key="GridCell.Tab.1.left/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120007" />
+    <state width="1845" height="405" key="GridCell.Tab.1.left/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104951" />
     <state width="1844" height="405" key="GridCell.Tab.1.left/55.23.1865.1177@55.23.1865.1177" timestamp="1604837019395" />
-    <state width="1844" height="405" key="GridCell.Tab.1.right" timestamp="1604837019395">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state width="1848" height="405" key="GridCell.Tab.1.right" timestamp="1606263120008">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.right/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053417" />
     <state width="1850" height="405" key="GridCell.Tab.1.right/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594535" />
-    <state width="1844" height="405" key="GridCell.Tab.1.right/54.23.1866.1177@54.23.1866.1177" timestamp="1604834278153" />
+    <state width="1848" height="405" key="GridCell.Tab.1.right/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120008" />
+    <state width="1845" height="405" key="GridCell.Tab.1.right/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104952" />
     <state width="1844" height="405" key="GridCell.Tab.1.right/55.23.1865.1177@55.23.1865.1177" timestamp="1604837019395" />
-    <state x="497" y="250" key="SettingsEditor" timestamp="1604833345863">
-      <screen x="54" y="23" width="1866" height="1177" />
+    <state x="495" y="250" key="SettingsEditor" timestamp="1606260013079">
+      <screen x="51" y="23" width="1869" height="1177" />
     </state>
     <state x="493" y="250" key="SettingsEditor/49.23.1871.1177@49.23.1871.1177" timestamp="1604818938341" />
-    <state x="497" y="250" key="SettingsEditor/54.23.1866.1177@54.23.1866.1177" timestamp="1604833345863" />
+    <state x="495" y="250" key="SettingsEditor/51.23.1869.1177@51.23.1869.1177" timestamp="1606260013079" />
+    <state x="497" y="250" key="SettingsEditor/54.23.1866.1177@54.23.1866.1177" timestamp="1606210921821" />
     <state x="498" y="250" key="SettingsEditor/55.23.1865.1177@55.23.1865.1177" timestamp="1604829059844" />
-    <state x="659" y="446" key="com.intellij.ide.util.TipDialog" timestamp="1604829026214">
-      <screen x="55" y="23" width="1865" height="1177" />
+    <state x="442" y="702" key="com.intellij.ide.util.TipDialog" timestamp="1606210424615">
+      <screen x="54" y="23" width="1866" height="1177" />
     </state>
+    <state x="437" y="702" key="com.intellij.ide.util.TipDialog/48.23.1872.1177@48.23.1872.1177" timestamp="1606028472077" />
     <state x="655" y="446" key="com.intellij.ide.util.TipDialog/49.23.1871.1177@49.23.1871.1177" timestamp="1604818915516" />
+    <state x="442" y="702" key="com.intellij.ide.util.TipDialog/54.23.1866.1177@54.23.1866.1177" timestamp="1606210424615" />
     <state x="659" y="446" key="com.intellij.ide.util.TipDialog/55.23.1865.1177@55.23.1865.1177" timestamp="1604829026214" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/tests.py</url>
-          <line>155</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
