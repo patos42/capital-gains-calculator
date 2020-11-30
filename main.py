@@ -1,15 +1,25 @@
-import model
-import inventory_accounting_methods
 import sys
 from file_reader import *
+from file_reader import FileReader
+from inventory_accounting_methods import FirstInFirstOutInventory, MatchedInventory
+from model import Trade
+from capital_gains_calculator import CapitalGainsTaxMethod, DiscountCapitalGainsTaxMethod, CapitalGainsTax
 
 def main():
     if (len(sys.argv) > 1):
         file_path = sys.argv[1]
     else:
-        file_path = "./test_data/trades.csv"
-    file_reader = FileReader()
-    sorted_trades = file_reader.read_trades(file_path)
+        file_path = "./test_data/trades2.csv"
+    file_reader: FileReader = FileReader()
+    trades: list[Trade] = file_reader.read_trades(file_path)
+    fifo_inventory_manager: FirstInFirstOutInventory = FirstInFirstOutInventory()
+    matched_trades: List[MatchedInventory] = fifo_inventory_manager.match_trades(trades)
+    capital_gains_calculator : CapitalGainsTaxMethod = DiscountCapitalGainsTaxMethod()
+    gains : List[CapitalGainsTax] = []
+    for match in matched_trades:
+        gain : CapitalGainsTax = capital_gains_calculator.calculate_taxable_gain(match)
+        gains.append(gain)
+    file_reader.write_capital_gains("./test_data/gains.csv", gains)
 
 
 if __name__ == "__main__":

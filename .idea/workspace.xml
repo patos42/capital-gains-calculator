@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="935ad55f-887a-4d2e-a8d2-5dfa31cf203f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CapitalGainsTaxCalculator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CapitalGainsTaxCalculator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory_accounting_methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_accounting_methods.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/capital_gains_calculator.py" beforeDir="false" afterPath="$PROJECT_DIR$/capital_gains_calculator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/file_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +37,28 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.IntegrationTests">
+  <component name="RunManager" selected="Python tests.Unittests for tests.IntegrationTests.test_run_test_file">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CapitalGainsTaxCalculator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests for tests.FifoInventoryTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -56,34 +73,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests.FifoInventoryTests.test_basic" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="CapitalGainsTaxCalculator" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_basic&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for tests.FifoInventoryTests.test_complex_profile" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="CapitalGainsTaxCalculator" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_complex_profile&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Unittests for tests.IntegrationTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -95,6 +84,20 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;tests.IntegrationTests&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for tests.IntegrationTests.test_run_test_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="CapitalGainsTaxCalculator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.IntegrationTests.test_run_test_file&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -114,11 +117,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for tests.IntegrationTests" />
+        <item itemvalue="Python tests.Unittests for tests.IntegrationTests.test_run_test_file" />
         <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python tests.Unittests for tests.IntegrationTests" />
         <item itemvalue="Python tests.Unittests for tests.TestFileReader" />
-        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_basic" />
-        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_complex_profile" />
       </list>
     </recent_temporary>
   </component>
@@ -154,42 +157,46 @@
       <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state x="772" y="374" key="FileChooserDialogImpl/49.23.1871.1177@49.23.1871.1177" timestamp="1604818887667" />
-    <state width="1848" height="328" key="GridCell.Tab.0.bottom" timestamp="1606264247081">
-      <screen x="51" y="23" width="1869" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.bottom" timestamp="1606732139214">
+      <screen x="55" y="23" width="1865" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.bottom/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053416" />
     <state width="1850" height="328" key="GridCell.Tab.0.bottom/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737828" />
     <state width="1848" height="328" key="GridCell.Tab.0.bottom/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247081" />
     <state width="1844" height="328" key="GridCell.Tab.0.bottom/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654187" />
     <state width="1845" height="405" key="GridCell.Tab.0.bottom/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104951" />
-    <state width="1844" height="328" key="GridCell.Tab.0.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132361" />
-    <state width="1848" height="328" key="GridCell.Tab.0.center" timestamp="1606264247080">
-      <screen x="51" y="23" width="1869" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1606732139214" />
+    <state width="1848" height="328" key="GridCell.Tab.0.bottom/62.23.1858.1177@62.23.1858.1177" timestamp="1606649693174" />
+    <state width="1848" height="328" key="GridCell.Tab.0.center" timestamp="1606732139213">
+      <screen x="55" y="23" width="1865" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.center/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053413" />
     <state width="1850" height="328" key="GridCell.Tab.0.center/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737827" />
     <state width="1848" height="328" key="GridCell.Tab.0.center/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247080" />
     <state width="1844" height="328" key="GridCell.Tab.0.center/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654186" />
     <state width="1845" height="405" key="GridCell.Tab.0.center/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104950" />
-    <state width="1844" height="328" key="GridCell.Tab.0.center/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132360" />
-    <state width="1848" height="328" key="GridCell.Tab.0.left" timestamp="1606264247079">
-      <screen x="51" y="23" width="1869" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.center/55.23.1865.1177@55.23.1865.1177" timestamp="1606732139213" />
+    <state width="1848" height="328" key="GridCell.Tab.0.center/62.23.1858.1177@62.23.1858.1177" timestamp="1606649693173" />
+    <state width="1848" height="328" key="GridCell.Tab.0.left" timestamp="1606732139213">
+      <screen x="55" y="23" width="1865" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.left/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053412" />
     <state width="1850" height="328" key="GridCell.Tab.0.left/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737827" />
     <state width="1848" height="328" key="GridCell.Tab.0.left/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247079" />
     <state width="1844" height="328" key="GridCell.Tab.0.left/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654185" />
     <state width="1845" height="405" key="GridCell.Tab.0.left/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104949" />
-    <state width="1844" height="328" key="GridCell.Tab.0.left/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132349" />
-    <state width="1848" height="328" key="GridCell.Tab.0.right" timestamp="1606264247081">
-      <screen x="51" y="23" width="1869" height="1177" />
+    <state width="1848" height="328" key="GridCell.Tab.0.left/55.23.1865.1177@55.23.1865.1177" timestamp="1606732139213" />
+    <state width="1848" height="328" key="GridCell.Tab.0.left/62.23.1858.1177@62.23.1858.1177" timestamp="1606649693172" />
+    <state width="1848" height="328" key="GridCell.Tab.0.right" timestamp="1606732139214">
+      <screen x="55" y="23" width="1865" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.right/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053415" />
     <state width="1850" height="328" key="GridCell.Tab.0.right/49.23.1871.1177@49.23.1871.1177" timestamp="1604820737828" />
     <state width="1848" height="328" key="GridCell.Tab.0.right/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247081" />
     <state width="1844" height="328" key="GridCell.Tab.0.right/52.23.1868.1177@52.23.1868.1177" timestamp="1604833654187" />
     <state width="1845" height="405" key="GridCell.Tab.0.right/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104950" />
-    <state width="1844" height="328" key="GridCell.Tab.0.right/55.23.1865.1177@55.23.1865.1177" timestamp="1604837132360" />
+    <state width="1848" height="328" key="GridCell.Tab.0.right/55.23.1865.1177@55.23.1865.1177" timestamp="1606732139214" />
+    <state width="1848" height="328" key="GridCell.Tab.0.right/62.23.1858.1177@62.23.1858.1177" timestamp="1606649693173" />
     <state width="1848" height="405" key="GridCell.Tab.1.bottom" timestamp="1606263120010">
       <screen x="51" y="23" width="1869" height="1177" />
     </state>
