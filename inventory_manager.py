@@ -1,7 +1,8 @@
 from typing import List
+from collections import OrderedDict
+from datetime import datetime
 
 from model import *
-
 
 # class Inventory(TypedDict):
 #     asset_code : str
@@ -25,7 +26,7 @@ class MutableInventoryManager:
 
 
     # Gets balance at date (inclusive).
-    def get_balance(self, asset_code : str, date : datetime):
+    def get_balance(self, asset_code : str, date : datetime) -> float:
         flows : OrderedDict[datetime, Trade] = self._inventory_flows[asset_code]
         total_balance : float = 0
         for trade in flows.values():

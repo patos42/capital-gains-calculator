@@ -1,14 +1,14 @@
-from typing import List
-
+from typing import List, Final, Dict, Optional
+from datetime import datetime
 from model import *
+from collections import OrderedDict
 
 _ROUNDING_TOLERANCE = 1e-6
 
 
-class CurrentBalance(dict):
+class CurrentBalance(Dict[str, float]):
     asset_code: str
     balance: float
-
 
 # Records matched buy/sell trades.
 class MatchedInventory:
@@ -97,7 +97,10 @@ class FirstInFirstOutInventory:
         return matched_inventory
 
     def match_trades(self, trades: List[Trade]) -> List[MatchedInventory]:
-        sorted_trades = sorted(trades, key=lambda t: t.date)
+        # Static method to help with sorting
+        def get_date(trade: Trade) -> datetime:
+            return trade.date
+        sorted_trades = sorted(trades, key=get_date)
         matched_inventory: List[MatchedInventory] = []
         current_balance : CurrentBalance = CurrentBalance() # str : float
         inventory : Inventory = Inventory()  # str : {datetime, float}

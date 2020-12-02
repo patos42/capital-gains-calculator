@@ -4,6 +4,7 @@ from typing import List
 from model import Trade
 from capital_gains_calculator import CapitalGainsTax
 
+
 class FileReader:
     def read_trades(self, file_path: str) -> List[Trade]:  # ToDo: Created SortedList class.
         trades = []
@@ -14,29 +15,52 @@ class FileReader:
                     # print(row)
                     date_time = datetime.datetime.strptime(row["Date/Time"],
                                                            '%Y-%m-%d, %H:%M:%S')  # 2019-07-01, 14:48:19
-                    price: float = float(row["T. Price"].replace(",",""))
-                    quantity: float = float(row["Quantity"].replace(",",""))
+                    price: float = float(row["T. Price"].replace(",", ""))
+                    quantity: float = float(row["Quantity"].replace(",", ""))
+                    proceeds: float = float(row["Proceeds"].replace(",", ""))
+                    commission: float = float(row["Comm in AUD"].replace(",", ""))
+                    asset_category: str = str(row["Asset Category"])
+                    symbol: str = row["Symbol"]
+
+                    # Fix strange Interactive Brokers convention of setting AUD as quanity and USD amount as proceeds.
+                    # Possibly a result of indirect quoting. Swapping quantity/proceeds and changing indirect quote
+                    # to a direct one.
+                    if (asset_category == "Forex"):
+                        if (symbol == "AUD.USD"):
+                            trades.append(Trade(symbol,
+                                                date_time,
+                                                1 / price,  # NB: converted to direct quote.
+                                                proceeds,
+                                                commission))
+                        else:
+                            raise NotImplementedError(
+                                "Only AUD.USD currency trades implemented as I am unsure how IB treats other currencies.")
+                    else:
+                        trades.append(Trade(symbol,
+                                            date_time,
+                                            price,
+                                            quantity,
+                                            commission))
                     # print(date_time)
                     # print(row["Date/Time"])
-                    trades.append(Trade(row["Symbol"],
-                                        date_time,
-                                        price,
-                                        quantity))
+
         return trades
 
-    def write_capital_gains(self, file_path: str, gains: List[CapitalGainsTax]):
+    def write_capital_gains(self, file_path: str, gains: List[CapitalGainsTax]) -> None:
         with open(file_path, mode='w') as file:
             writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(['asset_code', 'buy_price','buy_date','sell_price','sell_date','quantity','taxable_gain'])
+            header: List[str] = ['asset_code', 'buy_price', 'buy_date', 'sell_price', 'sell_date', 'quantity',
+                                 'taxable_gain']
+            writer.writerow(header)
             for gain in gains:
-                writer.writerow([gain.matched_inventory.asset_code,
-                                 gain.matched_inventory.buy_price,
-                                 gain.matched_inventory.buy_date,
-                                 gain.matched_inventory.sell_price,
-                                 gain.matched_inventory.sell_date,
-                                 gain.matched_inventory.quantity,
-                                 gain.taxable_gain])
-
+                row: List[str] = [gain.matched_inventory.asset_code,
+                                  str(gain.matched_inventory.buy_price),
+                                  str(gain.matched_inventory.buy_date),
+                                  str(gain.matched_inventory.sell_price),
+                                  str(gain.matched_inventory.sell_date),
+                                  str(gain.matched_inventory.quantity),
+                                  str(gain.taxable_gain)]
+                writer.writerow(row)
 
         # Read CSV
         # Convert to trade class
