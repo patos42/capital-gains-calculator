@@ -1,15 +1,16 @@
 import random
 from unittest import TestCase
-from file_reader import FileReader
-from inventory_accounting_methods import *
-from capital_gains_calculator import *
-from typing import List, Literal
+from read_writer import InteractiveBrokersReadWriter
+from inventory_accounting import *
+from capital_gains_tax import *
+from typing import List
 from model import *
 from datetime import datetime
 
+
 class TestFileReader(TestCase):
     def test_read_file(self) -> None:
-        file_reader = FileReader()
+        file_reader = InteractiveBrokersReadWriter()
         file_reader.read_trades("./test_data/trades.csv")
 
 
@@ -162,23 +163,24 @@ class CapitalGainsTaxTests(TestCase):
                                                   datetime(2020, 1, 3), 12, 12)
         inventory_not_discountable = MatchedInventory("BHP", datetime(2020, 1, 1), 10,
                                                       datetime(2020, 1, 3), 12, 12)
-        cgtCalculator: CapitalGainsTaxMethod = DiscountCapitalGainsTaxMethod()
-        self.assertEqual(cgtCalculator.calculate_taxable_gain(inventory_discountable).taxable_gain, 1.0)
-        self.assertEqual(cgtCalculator.calculate_taxable_gain(inventory_not_discountable).taxable_gain, 2.0)
+        cgt_calculator: CapitalGainsTaxMethod = DiscountCapitalGainsTaxMethod()
+        self.assertEqual(cgt_calculator.calculate_taxable_gain(0, inventory_discountable).taxable_gain, 1.0)
+        self.assertEqual(cgt_calculator.calculate_taxable_gain(0, inventory_not_discountable).taxable_gain, 2.0)
 
     def test_fx_capital_gains(self) -> None:
         inventory_discountable = MatchedInventory("AUD.USD", datetime(2019, 1, 1), 1,
                                                   datetime(2020, 1, 3), 0.5, 100)
         inventory_not_discountable = MatchedInventory("AUD.USD", datetime(2020, 1, 1), 0.5,
-                                                          datetime(2020, 1, 3), 1, 100)
-        cgtCalculator: CapitalGainsTaxMethod = DiscountCapitalGainsTaxMethod()
-        self.assertEqual(cgtCalculator.calculate_taxable_gain(inventory_discountable).taxable_gain, 50)
-        self.assertEqual(cgtCalculator.calculate_taxable_gain(inventory_not_discountable).taxable_gain, -25)
+                                                      datetime(2020, 1, 3), 1, 100)
+        cgt_calculator: CapitalGainsTaxMethod = DiscountCapitalGainsTaxMethod()
+        self.assertEqual(cgt_calculator.calculate_taxable_gain(0, inventory_discountable).taxable_gain, 50)
+        self.assertEqual(cgt_calculator.calculate_taxable_gain(0, inventory_not_discountable).taxable_gain, -25)
+
 
 class IntegrationTests(TestCase):
     def test_run_test_file(self) -> None:
-        fileReader = FileReader()
-        trades: List[Trade] = fileReader.read_trades("./test_data/trades2.csv")
+        file_reader = InteractiveBrokersReadWriter()
+        trades: List[Trade] = file_reader.read_trades("./test_data/trades2.csv")
         fifo_inventory_manager: FirstInFirstOutInventory = FirstInFirstOutInventory()
         matched_trades: List[MatchedInventory] = fifo_inventory_manager.match_trades(trades)
         for tax_event in matched_trades:

@@ -1,26 +1,25 @@
 import sys
 from typing import List
 
-from capital_gains_calculator import CapitalGainsTaxMethod, DiscountCapitalGainsTaxMethod, CapitalGainsTax
-from file_reader import FileReader
-from inventory_accounting_methods import FirstInFirstOutInventory, MatchedInventory
+from capital_gains_tax import DiscountCapitalGainsTaxMethod, CapitalGainsTax, CapitalGainsTaxAggregator
+from read_writer import InteractiveBrokersReadWriter
+from inventory_accounting import FirstInFirstOutInventory, MatchedInventory
 from model import Trade
 
 
 def main() -> None:
-    if (len(sys.argv) > 1):
+    if len(sys.argv) > 1:
         file_path = sys.argv[1]
+        existing_capital_losses = float(sys.argv[2])
     else:
         file_path = "./test_data/trades2.csv"
-    file_reader: FileReader = FileReader()
+        existing_capital_losses = 0
+    file_reader: InteractiveBrokersReadWriter = InteractiveBrokersReadWriter()
     trades: List[Trade] = file_reader.read_trades(file_path)
     fifo_inventory_manager: FirstInFirstOutInventory = FirstInFirstOutInventory()
     matched_trades: List[MatchedInventory] = fifo_inventory_manager.match_trades(trades)
-    capital_gains_calculator: CapitalGainsTaxMethod = DiscountCapitalGainsTaxMethod()
-    gains: List[CapitalGainsTax] = []
-    for match in matched_trades:
-        gain: CapitalGainsTax = capital_gains_calculator.calculate_taxable_gain(match)
-        gains.append(gain)
+    capital_gains_aggregator : CapitalGainsTaxAggregator = CapitalGainsTaxAggregator(DiscountCapitalGainsTaxMethod())
+    gains: List[CapitalGainsTax] = capital_gains_aggregator.calculate(existing_capital_losses, matched_trades)
     file_reader.write_capital_gains("./test_data/gains.csv", gains)
 
 

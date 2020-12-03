@@ -1,4 +1,4 @@
-from typing import List, Final, Dict, Optional
+from typing import List, Final, Dict
 from datetime import datetime
 from model import *
 from collections import OrderedDict
@@ -9,6 +9,7 @@ _ROUNDING_TOLERANCE = 1e-6
 class CurrentBalance(Dict[str, float]):
     asset_code: str
     balance: float
+
 
 # Records matched buy/sell trades.
 class MatchedInventory:
@@ -34,7 +35,9 @@ class FirstInFirstOutInventory:
                         trade: Trade) -> List[MatchedInventory]:
         matched_inventory: List[MatchedInventory] = []
         trade_quantity_remaining = trade.quantity
-        if trade.quantity > _ROUNDING_TOLERANCE:  # If buy trade, check if short ToDo: Collapse this and next if statement. Use negative quantity to signify closing shorts.
+        # If buy trade, check if short
+        # ToDo: Collapse this and next if statement. Use negative quantity to signify closing shorts.
+        if trade.quantity > _ROUNDING_TOLERANCE:
             if current_balance[trade.asset_code] < -_ROUNDING_TOLERANCE:
                 for past_trade in past_trades.values():
                     if past_trade.quantity < -_ROUNDING_TOLERANCE:  # Skip other buy orders.
@@ -98,12 +101,13 @@ class FirstInFirstOutInventory:
 
     def match_trades(self, trades: List[Trade]) -> List[MatchedInventory]:
         # Static method to help with sorting
-        def get_date(trade: Trade) -> datetime:
-            return trade.date
+        def get_date(t: Trade) -> datetime:
+            return t.date
+
         sorted_trades = sorted(trades, key=get_date)
         matched_inventory: List[MatchedInventory] = []
-        current_balance : CurrentBalance = CurrentBalance() # str : float
-        inventory : Inventory = Inventory()  # str : {datetime, float}
+        current_balance: CurrentBalance = CurrentBalance()  # str : float
+        inventory: Inventory = Inventory()  # str : {datetime, float}
 
         for trade in sorted_trades:
             if trade.asset_code not in inventory:
