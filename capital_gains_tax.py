@@ -31,7 +31,7 @@ class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
         if carried_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
 
-        taxable_gain: float = (matched_inventory.sell_price - matched_inventory.buy_price) * matched_inventory.quantity
+        taxable_gain: float = (matched_inventory.sell_trade.price - matched_inventory.buy_trade.price) * matched_inventory.quantity
 
         # Net any carried losses before any potential discounts.
         remaining_carried_capital_losses: float
@@ -42,15 +42,15 @@ class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
             remaining_carried_capital_losses = carried_capital_losses + nettable_amount
         else:
             net_taxable_gain = 0
-            remaining_carried_capital_losses += (carried_capital_losses + taxable_gain)  # Adding two negative numbers.
+            remaining_carried_capital_losses = (carried_capital_losses + taxable_gain)  # Adding two negative numbers.
 
         # Determine date considered '1 year' after purchase. See example below.
-        buy_date: datetime = matched_inventory.buy_date
+        buy_date: datetime = matched_inventory.buy_trade.date
         # 1 calendar year later. Starts day after purchase (see example below)
         test_date: datetime = datetime(buy_date.year + 1,
                                        buy_date.month,
                                        buy_date.day + 1)
-        if matched_inventory.sell_date >= test_date and taxable_gain > 0:
+        if matched_inventory.sell_trade.date >= test_date and taxable_gain > 0:
             return CapitalGainsTax(matched_inventory, net_taxable_gain / 2, remaining_carried_capital_losses)
         else:
             return CapitalGainsTax(matched_inventory, net_taxable_gain, remaining_carried_capital_losses)

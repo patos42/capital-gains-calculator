@@ -18,11 +18,11 @@ class ReadWriter(ABC):
                                  'taxable_gain', 'carried_capital_losses']
             writer.writerow(header)
             for gain in gains:
-                row: List[str] = [gain.matched_inventory.asset_code,
-                                  str(gain.matched_inventory.buy_price),
-                                  str(gain.matched_inventory.buy_date),
-                                  str(gain.matched_inventory.sell_price),
-                                  str(gain.matched_inventory.sell_date),
+                row: List[str] = [gain.matched_inventory.buy_trade.asset_code,
+                                  str(gain.matched_inventory.buy_trade.price),
+                                  str(gain.matched_inventory.buy_trade.date),
+                                  str(gain.matched_inventory.sell_trade.price),
+                                  str(gain.matched_inventory.sell_trade.date),
                                   str(gain.matched_inventory.quantity),
                                   str(gain.taxable_gain),
                                   str(gain.carried_capital_losses)]

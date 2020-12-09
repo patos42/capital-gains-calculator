@@ -14,17 +14,11 @@ class CurrentBalance(Dict[str, float]):
 # Records matched buy/sell trades.
 class MatchedInventory:
     def __init__(self,
-                 asset_code: str,  # ToDo: change this to just accept two trades and a quantity.
-                 buy_date: datetime,
-                 buy_price: float,
-                 sell_date: datetime,
-                 sell_price: float,
+                 buy_trade: Trade,
+                 sell_trade : Trade,
                  quantity: float):
-        self.asset_code: Final = asset_code
-        self.buy_date: Final = buy_date
-        self.buy_price: Final = buy_price
-        self.sell_date: Final = sell_date
-        self.sell_price: Final = sell_price
+        self.buy_trade: Final[Trade] = buy_trade
+        self.sell_trade: Final[Trade] = sell_trade
         self.quantity: Final = quantity
 
 
@@ -48,11 +42,8 @@ class FirstInFirstOutInventory:
                         current_balance[trade.asset_code] += closed_amount
                         past_trade.quantity += closed_amount
                         trade_quantity_remaining -= closed_amount
-                        matched_inventory.append(MatchedInventory(past_trade.asset_code,
-                                                                  past_trade.date,
-                                                                  past_trade.price,
-                                                                  trade.date,
-                                                                  trade.price,
+                        matched_inventory.append(MatchedInventory(past_trade,
+                                                                  trade,
                                                                   closed_amount))
 
                     # If balance back to zero then just add rest to inventory.
@@ -76,11 +67,8 @@ class FirstInFirstOutInventory:
                         current_balance[trade.asset_code] -= closed_amount
                         past_trade.quantity -= closed_amount
                         trade_quantity_remaining += closed_amount
-                        matched_inventory.append(MatchedInventory(past_trade.asset_code,
-                                                                  past_trade.date,
-                                                                  past_trade.price,
-                                                                  trade.date,
-                                                                  trade.price,
+                        matched_inventory.append(MatchedInventory(past_trade,
+                                                                  trade,
                                                                   closed_amount))
 
                     # If balance back to zero then just add rest to inventory.
