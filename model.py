@@ -9,16 +9,23 @@ class Trade:
                  asset_code: str,
                  date: datetime,
                  price: float,
+                 currency : str,
                  quantity: float,
                  commission: float):
-        self.asset_code: Final[str] = asset_code
+        self.asset_code: Final = asset_code
         self.price: Final = price
         self.date: Final = date
-        self.quantity = quantity  # ToDo: Make Final
+        self.quantity : Final = quantity
         self.commission: Final = commission
+        self.currency : Final = currency
+
+        if commission > 0:
+            raise ValueError("Commission cannot be positive.")
 
 
-class Inventory(Dict[str, OrderedDict[datetime, Trade]]):
-    asset_code: str
-    trades: OrderedDict[datetime, Trade]
-    # ToDo: Change trades to a sorted list. Encapsulate sorting here to guarantee order.
+class TaxableTrade:
+    def __init__(self,
+                 trade : Trade,
+                 aud_price : float):
+        self.trade : Final = trade
+        self.aud_price : Final = aud_price

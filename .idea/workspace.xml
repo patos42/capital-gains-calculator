@@ -5,6 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/capital_gains_tax.py" beforeDir="false" afterPath="$PROJECT_DIR$/capital_gains_tax.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventory_accounting.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_accounting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/read_writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/read_writer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
     </list>
@@ -37,7 +39,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.leinardi.pycharm.mypy.MypyConfigurable" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for tests.CapitalGainsTaxTests.test_fx_capital_gains">
+  <component name="RunManager" selected="Python tests.Unittests for tests.IntegrationTests">
     <configuration name="Unittests for tests.CapitalGainsTaxTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -52,7 +54,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests.CapitalGainsTaxTests.test_capital_gains" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests.FifoInventoryTests.test_bought_in_two" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -62,11 +64,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.CapitalGainsTaxTests.test_capital_gains&quot;" />
+      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_bought_in_two&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests.CapitalGainsTaxTests.test_fx_capital_gains" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests.FifoInventoryTests.test_bought_in_two_sold_in_one" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -76,11 +78,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.CapitalGainsTaxTests.test_fx_capital_gains&quot;" />
+      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_bought_in_two_sold_in_one&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests.FifoInventoryTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests.FifoInventoryTests.test_complex_profile" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -90,11 +92,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.FifoInventoryTests&quot;" />
+      <option name="_new_target" value="&quot;tests.FifoInventoryTests.test_complex_profile&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests.IntegrationTests.test_run_test_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests.IntegrationTests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="CapitalGainsTaxCalculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -104,17 +106,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.IntegrationTests.test_run_test_file&quot;" />
+      <option name="_new_target" value="&quot;tests.IntegrationTests&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for tests.CapitalGainsTaxTests.test_fx_capital_gains" />
-        <item itemvalue="Python tests.Unittests for tests.CapitalGainsTaxTests.test_capital_gains" />
+        <item itemvalue="Python tests.Unittests for tests.IntegrationTests" />
         <item itemvalue="Python tests.Unittests for tests.CapitalGainsTaxTests" />
-        <item itemvalue="Python tests.Unittests for tests.IntegrationTests.test_run_test_file" />
-        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests" />
+        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_complex_profile" />
+        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_bought_in_two_sold_in_one" />
+        <item itemvalue="Python tests.Unittests for tests.FifoInventoryTests.test_bought_in_two" />
       </list>
     </recent_temporary>
   </component>
@@ -146,9 +148,10 @@
     </state>
     <state x="797" y="336" key="#com.intellij.ide.util.MemberChooser/49.23.1871.1177@49.23.1871.1177" timestamp="1604655608237" />
     <state x="800" y="336" key="#com.intellij.ide.util.MemberChooser/54.23.1866.1177@54.23.1866.1177" timestamp="1606210791129" />
-    <state x="675" y="356" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1606210290583">
-      <screen x="54" y="23" width="1866" height="1177" />
+    <state x="672" y="356" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1608718508905">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
+    <state x="672" y="356" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/49.23.1871.1177@49.23.1871.1177" timestamp="1608718508905" />
     <state x="675" y="356" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/54.23.1866.1177@54.23.1866.1177" timestamp="1606210290583" />
     <state x="823" y="509" width="337" height="328" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1606987476133">
       <screen x="64" y="23" width="1856" height="1177" />
@@ -162,94 +165,102 @@
       <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state x="772" y="374" key="FileChooserDialogImpl/49.23.1871.1177@49.23.1871.1177" timestamp="1604818887667" />
-    <state width="1829" height="405" key="GridCell.Tab.0.bottom" timestamp="1607510100764">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="328" key="GridCell.Tab.0.bottom" timestamp="1608719313064">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.bottom/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053416" />
-    <state width="1835" height="328" key="GridCell.Tab.0.bottom/49.23.1871.1177@49.23.1871.1177" timestamp="1607379363168" />
+    <state width="1829" height="328" key="GridCell.Tab.0.bottom/49.23.1871.1177@49.23.1871.1177" timestamp="1608719313064" />
     <state width="1848" height="328" key="GridCell.Tab.0.bottom/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247081" />
     <state width="922" height="328" key="GridCell.Tab.0.bottom/52.23.1868.1177@52.23.1868.1177" timestamp="1606958768123" />
     <state width="1845" height="405" key="GridCell.Tab.0.bottom/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104951" />
-    <state width="1848" height="405" key="GridCell.Tab.0.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650545" />
+    <state width="1829" height="328" key="GridCell.Tab.0.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1608118277564" />
     <state width="1835" height="328" key="GridCell.Tab.0.bottom/62.23.1858.1177@62.23.1858.1177" timestamp="1606988430179" />
     <state width="1835" height="328" key="GridCell.Tab.0.bottom/64.23.1856.1177@64.23.1856.1177" timestamp="1606987643957" />
-    <state width="1829" height="405" key="GridCell.Tab.0.bottom/70.23.1850.1177@70.23.1850.1177" timestamp="1607510100764" />
-    <state width="1829" height="405" key="GridCell.Tab.0.center" timestamp="1607510100762">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.0.bottom/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411524" />
+    <state width="1829" height="405" key="GridCell.Tab.0.bottom/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157936" />
+    <state width="1829" height="328" key="GridCell.Tab.0.center" timestamp="1608719313063">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.center/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053413" />
-    <state width="1835" height="328" key="GridCell.Tab.0.center/49.23.1871.1177@49.23.1871.1177" timestamp="1607379363167" />
+    <state width="1829" height="328" key="GridCell.Tab.0.center/49.23.1871.1177@49.23.1871.1177" timestamp="1608719313063" />
     <state width="1848" height="328" key="GridCell.Tab.0.center/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247080" />
     <state width="922" height="328" key="GridCell.Tab.0.center/52.23.1868.1177@52.23.1868.1177" timestamp="1606958768123" />
     <state width="1845" height="405" key="GridCell.Tab.0.center/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104950" />
-    <state width="1848" height="405" key="GridCell.Tab.0.center/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650544" />
+    <state width="1829" height="328" key="GridCell.Tab.0.center/55.23.1865.1177@55.23.1865.1177" timestamp="1608118277563" />
     <state width="1835" height="328" key="GridCell.Tab.0.center/62.23.1858.1177@62.23.1858.1177" timestamp="1606988430178" />
     <state width="1835" height="328" key="GridCell.Tab.0.center/64.23.1856.1177@64.23.1856.1177" timestamp="1606987643956" />
-    <state width="1829" height="405" key="GridCell.Tab.0.center/70.23.1850.1177@70.23.1850.1177" timestamp="1607510100762" />
-    <state width="1829" height="405" key="GridCell.Tab.0.left" timestamp="1607510100759">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.0.center/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411523" />
+    <state width="1829" height="405" key="GridCell.Tab.0.center/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157935" />
+    <state width="1829" height="328" key="GridCell.Tab.0.left" timestamp="1608719313063">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.left/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053412" />
-    <state width="1835" height="328" key="GridCell.Tab.0.left/49.23.1871.1177@49.23.1871.1177" timestamp="1607379363167" />
+    <state width="1829" height="328" key="GridCell.Tab.0.left/49.23.1871.1177@49.23.1871.1177" timestamp="1608719313063" />
     <state width="1848" height="328" key="GridCell.Tab.0.left/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247079" />
     <state width="922" height="328" key="GridCell.Tab.0.left/52.23.1868.1177@52.23.1868.1177" timestamp="1606958768122" />
     <state width="1845" height="405" key="GridCell.Tab.0.left/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104949" />
-    <state width="1848" height="405" key="GridCell.Tab.0.left/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650544" />
+    <state width="1829" height="328" key="GridCell.Tab.0.left/55.23.1865.1177@55.23.1865.1177" timestamp="1608118277562" />
     <state width="1835" height="328" key="GridCell.Tab.0.left/62.23.1858.1177@62.23.1858.1177" timestamp="1606988430177" />
     <state width="1835" height="328" key="GridCell.Tab.0.left/64.23.1856.1177@64.23.1856.1177" timestamp="1606987643955" />
-    <state width="1829" height="405" key="GridCell.Tab.0.left/70.23.1850.1177@70.23.1850.1177" timestamp="1607510100759" />
-    <state width="1829" height="405" key="GridCell.Tab.0.right" timestamp="1607510100763">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.0.left/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411523" />
+    <state width="1829" height="405" key="GridCell.Tab.0.left/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157931" />
+    <state width="1829" height="328" key="GridCell.Tab.0.right" timestamp="1608719313064">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.0.right/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053415" />
-    <state width="1835" height="328" key="GridCell.Tab.0.right/49.23.1871.1177@49.23.1871.1177" timestamp="1607379363167" />
+    <state width="1829" height="328" key="GridCell.Tab.0.right/49.23.1871.1177@49.23.1871.1177" timestamp="1608719313064" />
     <state width="1848" height="328" key="GridCell.Tab.0.right/51.23.1869.1177@51.23.1869.1177" timestamp="1606264247081" />
     <state width="922" height="328" key="GridCell.Tab.0.right/52.23.1868.1177@52.23.1868.1177" timestamp="1606958768123" />
     <state width="1845" height="405" key="GridCell.Tab.0.right/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104950" />
-    <state width="1848" height="405" key="GridCell.Tab.0.right/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650544" />
+    <state width="1829" height="328" key="GridCell.Tab.0.right/55.23.1865.1177@55.23.1865.1177" timestamp="1608118277563" />
     <state width="1835" height="328" key="GridCell.Tab.0.right/62.23.1858.1177@62.23.1858.1177" timestamp="1606988430178" />
     <state width="1835" height="328" key="GridCell.Tab.0.right/64.23.1856.1177@64.23.1856.1177" timestamp="1606987643956" />
-    <state width="1829" height="405" key="GridCell.Tab.0.right/70.23.1850.1177@70.23.1850.1177" timestamp="1607510100763" />
-    <state width="1829" height="405" key="GridCell.Tab.1.bottom" timestamp="1607510102068">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.0.right/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411523" />
+    <state width="1829" height="405" key="GridCell.Tab.0.right/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157935" />
+    <state width="1829" height="405" key="GridCell.Tab.1.bottom" timestamp="1608718652225">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.bottom/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053417" />
-    <state width="1850" height="405" key="GridCell.Tab.1.bottom/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594535" />
+    <state width="1829" height="405" key="GridCell.Tab.1.bottom/49.23.1871.1177@49.23.1871.1177" timestamp="1608718652225" />
     <state width="1848" height="405" key="GridCell.Tab.1.bottom/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120010" />
     <state width="1845" height="405" key="GridCell.Tab.1.bottom/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104952" />
-    <state width="1848" height="405" key="GridCell.Tab.1.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650546" />
-    <state width="1829" height="405" key="GridCell.Tab.1.bottom/70.23.1850.1177@70.23.1850.1177" timestamp="1607510102068" />
-    <state width="1829" height="405" key="GridCell.Tab.1.center" timestamp="1607510102067">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.1.bottom/55.23.1865.1177@55.23.1865.1177" timestamp="1608100977112" />
+    <state width="1829" height="405" key="GridCell.Tab.1.bottom/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411525" />
+    <state width="1829" height="405" key="GridCell.Tab.1.bottom/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157782" />
+    <state width="1829" height="405" key="GridCell.Tab.1.center" timestamp="1608718652224">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.center/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053416" />
-    <state width="1850" height="405" key="GridCell.Tab.1.center/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594535" />
+    <state width="1829" height="405" key="GridCell.Tab.1.center/49.23.1871.1177@49.23.1871.1177" timestamp="1608718652224" />
     <state width="1848" height="405" key="GridCell.Tab.1.center/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120008" />
     <state width="1845" height="405" key="GridCell.Tab.1.center/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104952" />
-    <state width="1848" height="405" key="GridCell.Tab.1.center/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650545" />
-    <state width="1829" height="405" key="GridCell.Tab.1.center/70.23.1850.1177@70.23.1850.1177" timestamp="1607510102067" />
-    <state width="1829" height="405" key="GridCell.Tab.1.left" timestamp="1607510102067">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.1.center/55.23.1865.1177@55.23.1865.1177" timestamp="1608100977112" />
+    <state width="1829" height="405" key="GridCell.Tab.1.center/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411525" />
+    <state width="1829" height="405" key="GridCell.Tab.1.center/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157781" />
+    <state width="1829" height="405" key="GridCell.Tab.1.left" timestamp="1608718652224">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.left/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053416" />
-    <state width="1850" height="405" key="GridCell.Tab.1.left/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594534" />
+    <state width="1829" height="405" key="GridCell.Tab.1.left/49.23.1871.1177@49.23.1871.1177" timestamp="1608718652224" />
     <state width="1848" height="405" key="GridCell.Tab.1.left/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120007" />
     <state width="1845" height="405" key="GridCell.Tab.1.left/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104951" />
-    <state width="1848" height="405" key="GridCell.Tab.1.left/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650545" />
-    <state width="1829" height="405" key="GridCell.Tab.1.left/70.23.1850.1177@70.23.1850.1177" timestamp="1607510102067" />
-    <state width="1829" height="405" key="GridCell.Tab.1.right" timestamp="1607510102068">
-      <screen x="70" y="23" width="1850" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.1.left/55.23.1865.1177@55.23.1865.1177" timestamp="1608100977111" />
+    <state width="1829" height="405" key="GridCell.Tab.1.left/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411524" />
+    <state width="1829" height="405" key="GridCell.Tab.1.left/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157781" />
+    <state width="1829" height="405" key="GridCell.Tab.1.right" timestamp="1608718652225">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
     <state width="1850" height="405" key="GridCell.Tab.1.right/48.23.1872.1177@48.23.1872.1177" timestamp="1604823053417" />
-    <state width="1850" height="405" key="GridCell.Tab.1.right/49.23.1871.1177@49.23.1871.1177" timestamp="1604820594535" />
+    <state width="1829" height="405" key="GridCell.Tab.1.right/49.23.1871.1177@49.23.1871.1177" timestamp="1608718652225" />
     <state width="1848" height="405" key="GridCell.Tab.1.right/51.23.1869.1177@51.23.1869.1177" timestamp="1606263120008" />
     <state width="1845" height="405" key="GridCell.Tab.1.right/54.23.1866.1177@54.23.1866.1177" timestamp="1606214104952" />
-    <state width="1848" height="405" key="GridCell.Tab.1.right/55.23.1865.1177@55.23.1865.1177" timestamp="1606774650545" />
-    <state width="1829" height="405" key="GridCell.Tab.1.right/70.23.1850.1177@70.23.1850.1177" timestamp="1607510102067" />
-    <state x="497" y="250" width="1360" height="722" key="SettingsEditor" timestamp="1606785245242">
-      <screen x="54" y="23" width="1866" height="1177" />
+    <state width="1829" height="405" key="GridCell.Tab.1.right/55.23.1865.1177@55.23.1865.1177" timestamp="1608100977112" />
+    <state width="1829" height="405" key="GridCell.Tab.1.right/69.23.1851.1177@69.23.1851.1177" timestamp="1607511411525" />
+    <state width="1829" height="405" key="GridCell.Tab.1.right/70.23.1850.1177@70.23.1850.1177" timestamp="1607510157782" />
+    <state x="493" y="250" width="1360" height="722" key="SettingsEditor" timestamp="1608718703395">
+      <screen x="49" y="23" width="1871" height="1177" />
     </state>
-    <state x="493" y="250" key="SettingsEditor/49.23.1871.1177@49.23.1871.1177" timestamp="1604818938341" />
+    <state x="493" y="250" key="SettingsEditor/49.23.1871.1177@49.23.1871.1177" timestamp="1608718703395" />
     <state x="495" y="250" key="SettingsEditor/51.23.1869.1177@51.23.1869.1177" timestamp="1606260013079" />
     <state x="497" y="250" width="1360" height="722" key="SettingsEditor/54.23.1866.1177@54.23.1866.1177" timestamp="1606785245242" />
     <state x="158" y="228" width="1453" height="722" key="SettingsEditor/55.23.1865.1177@55.23.1865.1177" timestamp="1606785106567" />

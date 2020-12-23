@@ -8,10 +8,14 @@ class CapitalGainsTax:
     def __init__(self,
                  matched_inventory: MatchedInventory,
                  taxable_gain: float,
-                 carried_capital_losses: float):
+                 carried_capital_losses: float,
+                 buy_commission: float,
+                 sell_commission: float):
         self.matched_inventory: Final = matched_inventory
         self.taxable_gain: Final = taxable_gain
         self.carried_capital_losses: Final = carried_capital_losses
+        self.buy_commission: Final = buy_commission
+        self.sell_commission: Final = sell_commission
 
 
 class CapitalGainsTaxMethod(ABC):
@@ -31,7 +35,11 @@ class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
         if carried_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
 
-        taxable_gain: float = (matched_inventory.sell_trade.price - matched_inventory.buy_trade.price) * matched_inventory.quantity
+        buy_side_pro_rata_commission : float = matched_inventory.buy_trade.commission * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
+        sell_side_pro_rata_commission: float = matched_inventory.sell_trade.commission * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
+        taxable_gain: float = (matched_inventory.sell_trade.price - matched_inventory.buy_trade.price) \
+                              * matched_inventory.quantity \
+                              + sell_side_pro_rata_commission + buy_side_pro_rata_commission # Adding negative number.
 
         # Net any carried losses before any potential discounts.
         remaining_carried_capital_losses: float
@@ -51,9 +59,18 @@ class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
                                        buy_date.month,
                                        buy_date.day + 1)
         if matched_inventory.sell_trade.date >= test_date and taxable_gain > 0:
-            return CapitalGainsTax(matched_inventory, net_taxable_gain / 2, remaining_carried_capital_losses)
+            return CapitalGainsTax(matched_inventory,
+                                   net_taxable_gain / 2,
+                                   remaining_carried_capital_losses,
+                                   buy_side_pro_rata_commission,
+                                   sell_side_pro_rata_commission)
         else:
-            return CapitalGainsTax(matched_inventory, net_taxable_gain, remaining_carried_capital_losses)
+            return CapitalGainsTax(matched_inventory,
+                                   net_taxable_gain,
+                                   remaining_carried_capital_losses,
+                                   buy_side_pro_rata_commission,
+                                   sell_side_pro_rata_commission)
+
 
 # Strange Day counting method:
 # https://www.ato.gov.au/General/Capital-gains-tax/Working-out-your-capital-gain-or-loss/Working-out-your-capital-gain/

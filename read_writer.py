@@ -15,7 +15,7 @@ class ReadWriter(ABC):
         with open(file_path, mode='w') as file:
             writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             header: List[str] = ['asset_code', 'buy_price', 'buy_date', 'sell_price', 'sell_date', 'quantity',
-                                 'taxable_gain', 'carried_capital_losses']
+                                 'taxable_gain', 'carried_capital_losses', 'buy_commission', 'sell_commission']
             writer.writerow(header)
             for gain in gains:
                 row: List[str] = [gain.matched_inventory.buy_trade.asset_code,
@@ -25,7 +25,9 @@ class ReadWriter(ABC):
                                   str(gain.matched_inventory.sell_trade.date),
                                   str(gain.matched_inventory.quantity),
                                   str(gain.taxable_gain),
-                                  str(gain.carried_capital_losses)]
+                                  str(gain.carried_capital_losses),
+                                  str(gain.buy_commission),
+                                  str(gain.sell_commission)]
                 writer.writerow(row)
 
 
@@ -44,7 +46,8 @@ class InteractiveBrokersReadWriter(ReadWriter):
                     proceeds: float = float(row["Proceeds"].replace(",", ""))
                     commission: float = float(row["Comm in AUD"].replace(",", ""))
                     asset_category: str = str(row["Asset Category"])
-                    symbol: str = row["Symbol"]
+                    symbol: str = str(row["Symbol"])
+                    currency: str = str(row["Currency"])
 
                     # Fix strange Interactive Brokers convention of setting AUD as quanity and USD amount as proceeds.
                     # Possibly a result of indirect quoting. Swapping quantity/proceeds and changing indirect quote
@@ -54,6 +57,7 @@ class InteractiveBrokersReadWriter(ReadWriter):
                             trades.append(Trade(symbol,
                                                 date_time,
                                                 1 / price,  # NB: converted to direct quote.
+                                                "AUD", # Hack: Report seems to use USD?
                                                 proceeds,
                                                 commission))
                         else:
@@ -63,9 +67,8 @@ class InteractiveBrokersReadWriter(ReadWriter):
                         trades.append(Trade(symbol,
                                             date_time,
                                             price,
+                                            currency,
                                             quantity,
                                             commission))
-                    # print(date_time)
-                    # print(row["Date/Time"])
 
         return trades
