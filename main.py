@@ -17,10 +17,10 @@ def main() -> None:
     file_reader: InteractiveBrokersReadWriter = InteractiveBrokersReadWriter()
     trades: List[Trade] = file_reader.read_trades(file_path)
     fifo_inventory_manager: FirstInFirstOutInventory = FirstInFirstOutInventory()
-    matched_trades: List[MatchedInventory] = fifo_inventory_manager.match_trades(trades)
+    matched_trades: List[MatchedInventory[Trade]] = fifo_inventory_manager.match_trades(trades)
     capital_gains_aggregator : CapitalGainsTaxAggregator = CapitalGainsTaxAggregator(DiscountCapitalGainsTaxMethod())
-    gains: List[CapitalGainsTax] = capital_gains_aggregator.calculate(existing_capital_losses, matched_trades)
-    file_reader.write_capital_gains("./test_data/gains.csv", gains)
+    #gains: List[CapitalGainsTax] = capital_gains_aggregator.calculate(existing_capital_losses, matched_trades)
+    #file_reader.write_capital_gains("./test_data/gains.csv", gains)
 
 
 if __name__ == "__main__":

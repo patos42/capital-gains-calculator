@@ -1,10 +1,11 @@
-from typing import List, Final, Dict
+from typing import List, Final, Dict, TypeVar, Generic
 from datetime import datetime
 from model import *
 from collections import OrderedDict
 
 _ROUNDING_TOLERANCE = 1e-6
 
+T = TypeVar('T', Trade, TaxableTrade)
 
 class CurrentBalance(Dict[str, float]):
     asset_code: str
@@ -12,13 +13,13 @@ class CurrentBalance(Dict[str, float]):
 
 
 # Records matched buy/sell trades.
-class MatchedInventory:
+class MatchedInventory(Generic[T]):
     def __init__(self,
-                 buy_trade: Trade,
-                 sell_trade: Trade,
+                 buy_trade: T,
+                 sell_trade: T,
                  quantity: float):
-        self.buy_trade: Final = buy_trade
-        self.sell_trade: Final = sell_trade
+        self.buy_trade: Final[T] = buy_trade
+        self.sell_trade: Final[T] = sell_trade
         self.quantity: Final = quantity
         if (buy_trade.quantity > 0 and sell_trade.quantity > 0) or (buy_trade.quantity < 0 and sell_trade.quantity < 0):
             raise ValueError("Sell trade quantity must be of opposite sign of buy trade.")
@@ -27,24 +28,24 @@ class MatchedInventory:
 
 
 # Keeps track of quantity of trade that has been matched.
-class TradePartialMatch:
-    def __init__(self, trade: Trade):
-        self.trade: Final = trade
+class TradePartialMatch(Generic[T]):
+    def __init__(self, trade: T):
+        self.trade: Final[T] = trade
         self.remaining_quantity = trade.quantity
 
 
-class Inventory(Dict[str, OrderedDict[datetime, TradePartialMatch]]):
+class Inventory(Dict[str, OrderedDict[datetime, TradePartialMatch[T]]]):
     asset_code: str
-    trades: OrderedDict[datetime, TradePartialMatch]
+    trades: OrderedDict[datetime, TradePartialMatch[T]]
 
 # Note: Generally FX must be FIFO: http://classic.austlii.edu.au/au/legis/cth/consol_act/itaa1997240/s775.145.html
 
-class FirstInFirstOutInventory:
+class FirstInFirstOutInventory(Generic[T]):
     def _record_matches(self,
                         current_balance: CurrentBalance,
-                        past_trades: OrderedDict[datetime, TradePartialMatch],
-                        new_trade: TradePartialMatch) -> List[MatchedInventory]:
-        matched_inventory: List[MatchedInventory] = []
+                        past_trades: OrderedDict[datetime, TradePartialMatch[T]],
+                        new_trade: TradePartialMatch[T]) -> List[MatchedInventory[T]]:
+        matched_inventory: List[MatchedInventory[T]] = []
         trade_quantity_remaining = new_trade.remaining_quantity
         # If buy trade, check if short
         # ToDo: Collapse this and next if statement. Use negative quantity to signify closing shorts.
@@ -106,15 +107,15 @@ class FirstInFirstOutInventory:
 
         return matched_inventory
 
-    def match_trades(self, trades: List[Trade]) -> List[MatchedInventory]:
+    def match_trades(self, trades: List[T]) -> List[MatchedInventory[T]]:
         # Static method to help with sorting
         def get_date(t: Trade) -> datetime:
             return t.date
 
         sorted_trades = sorted(trades, key=get_date)
-        matched_inventory: List[MatchedInventory] = []
+        matched_inventory: List[MatchedInventory[T]] = []
         current_balance: CurrentBalance = CurrentBalance()  # str : float
-        inventory: Inventory = Inventory()  # str : {datetime, TradePartialMatch}
+        inventory: Inventory[T] = Inventory[T]()  # str : {datetime, TradePartialMatch}
 
         for trade in sorted_trades:
             if trade.asset_code not in inventory:

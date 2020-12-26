@@ -23,9 +23,11 @@ class Trade:
             raise ValueError("Commission cannot be positive.")
 
 
-class TaxableTrade:
+class TaxableTrade(Trade):
     def __init__(self,
                  trade : Trade,
-                 aud_price : float):
-        self.trade : Final = trade
+                 aud_price : float,
+                 exchange_rate: float):
+        super().__init__(trade.asset_code, trade.date, trade.price, trade.currency, trade.quantity, trade.commission)
         self.aud_price : Final = aud_price
+        self.exchange_rate : Final = exchange_rate

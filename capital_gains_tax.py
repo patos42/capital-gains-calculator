@@ -1,17 +1,18 @@
 from abc import ABC, abstractmethod
 from inventory_accounting import MatchedInventory
+from model import TaxableTrade
 from typing import Final, List
 from datetime import datetime
 
 
 class CapitalGainsTax:
     def __init__(self,
-                 matched_inventory: MatchedInventory,
+                 matched_inventory: MatchedInventory[TaxableTrade],
                  taxable_gain: float,
                  carried_capital_losses: float,
                  buy_commission: float,
                  sell_commission: float):
-        self.matched_inventory: Final = matched_inventory
+        self.matched_inventory: Final[MatchedInventory[TaxableTrade]] = matched_inventory
         self.taxable_gain: Final = taxable_gain
         self.carried_capital_losses: Final = carried_capital_losses
         self.buy_commission: Final = buy_commission
@@ -22,7 +23,7 @@ class CapitalGainsTaxMethod(ABC):
     @abstractmethod
     def calculate_taxable_gain(self,
                                carried_capital_losses: float,
-                               matched_inventory: MatchedInventory) -> CapitalGainsTax:
+                               matched_inventory: MatchedInventory[TaxableTrade]) -> CapitalGainsTax:
         ...
 
 
@@ -31,7 +32,7 @@ class CapitalGainsTaxMethod(ABC):
 # Calculates the CGT gain or carried losses for a set of trades.
 class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
     def calculate_taxable_gain(self, carried_capital_losses: float,
-                               matched_inventory: MatchedInventory) -> CapitalGainsTax:
+                               matched_inventory: MatchedInventory[TaxableTrade]) -> CapitalGainsTax:
         if carried_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
 
@@ -87,7 +88,7 @@ class CapitalGainsTaxAggregator:
         self._capital_gains_tax_method: Final = capital_gains_tax_method
 
     # existing_capital_losses as negative number.
-    def calculate(self, existing_capital_losses: float, trades: List[MatchedInventory]) -> List[CapitalGainsTax]:
+    def calculate(self, existing_capital_losses: float, trades: List[MatchedInventory[TaxableTrade]]) -> List[CapitalGainsTax]:
         if existing_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
 
