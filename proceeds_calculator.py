@@ -9,10 +9,8 @@ from foreign_asset_translator import ForeignAssetTranslator
 # Adds a fake trades
 class ForeignCurrencyProceedsCalculator:
     def __init__(self,
-                 inventory_acountant: FirstInFirstOutInventory[TaxableTrade],
-                 foreign_asset_translater: ForeignAssetTranslator):
+                 inventory_acountant: FirstInFirstOutInventory[TaxableTrade]):
         self.inventory_accountant = inventory_acountant
-        self.foreign_asset_translater = foreign_asset_translater
 
     def calculate_proceeds(self, trades: List[TaxableTrade]) -> List[TaxableTrade]:
         # taxable_trades : List[TaxableTrade] = self.foreign_asset_translater.convert_trades(trades)
@@ -25,12 +23,12 @@ class ForeignCurrencyProceedsCalculator:
                 proceeds = matched_trade.quantity * price_difference
 
                 # Create effective 'buy' trade to account for FX flow from foreign asset sale.
-                # ATO translates all foreign assets to AUD for tax purposes on trade. If there is a foriegn
+                # ATO translates all foreign assets to AUD for tax purposes on trade. If there is a foreign
                 # currency gain/loss then the fx cost base is the ATO fx rate at sale.
                 proxy_trade = Trade('AUD.' + matched_trade.sell_trade.currency,
                                     matched_trade.sell_trade.date,
                                     matched_trade.sell_trade.exchange_rate,
-                                    matched_trade.sell_trade.currency,
+                                    'AUD',
                                     proceeds,
                                     0)
 

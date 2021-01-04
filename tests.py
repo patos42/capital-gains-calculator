@@ -13,6 +13,10 @@ class TestFileReader(TestCase):
         file_reader = InteractiveBrokersReadWriter()
         file_reader.read_trades("./test_data/trades.csv")
 
+    def test_read_rba_file(self) -> None:
+        file_reader = InteractiveBrokersReadWriter()
+        file_reader.read_rba_rates("./test_data/f11.1-data.csv")
+
 
 class FifoInventoryTests(TestCase):
     def test_basic(self) -> None:

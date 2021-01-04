@@ -1,15 +1,40 @@
 import csv
-import datetime
-from typing import List
+from typing import List, Dict
 from model import Trade
 from capital_gains_tax import CapitalGainsTax
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 
 class ReadWriter(ABC):
     @abstractmethod
-    def read_trades(self, file_pat: str) -> List[Trade]:
+    def read_trades(self, file_path: str) -> List[Trade]:
         ...
+    # Source from page: https://rba.gov.au/statistics/historical-data.html#exchange-rates
+    # Or directly here: https://rba.gov.au/statistics/tables/csv/f11.1-data.csv
+    # Returns rates in the form ccy.AUD.
+    def read_rba_rates(self, file_path: str) -> Dict[str,Dict[datetime, float]]:
+        results : Dict[str,Dict[datetime, float]] = dict()
+        with open(file_path, newline='') as csvfile:
+            # Skip multiple header rows.
+            for i in range(5):
+                csvfile.readline()
+            reader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+            for row in reader:
+                date : datetime
+                try:
+                    # Strangely formatted CSV does not have date header. Ends up being 'Units'.
+                    date = datetime.strptime(row["Units"], '%d-%b-%Y')
+                except ValueError:
+                    continue
+                for column in row:
+                    if column != 'Index' and column != 'Units' and column != '':
+                        rate_code = column + '.AUD'
+                        if rate_code not in results.keys():
+                            results[rate_code] = dict()
+                        if row[column] != '':
+                            results[rate_code][date] = 1/float(row[column]) # Convention in file is AUD.ccy - need to swap.
+        return results
 
     def write_capital_gains(self, file_path: str, gains: List[CapitalGainsTax]) -> None:
         with open(file_path, mode='w') as file:
@@ -39,7 +64,7 @@ class InteractiveBrokersReadWriter(ReadWriter):
             for row in reader:
                 if row["DataDiscriminator"] == "Order":
                     # print(row)
-                    date_time = datetime.datetime.strptime(row["Date/Time"],
+                    date_time = datetime.strptime(row["Date/Time"],
                                                            '%Y-%m-%d, %H:%M:%S')  # 2019-07-01, 14:48:19
                     price: float = float(row["T. Price"].replace(",", ""))
                     quantity: float = float(row["Quantity"].replace(",", ""))
@@ -50,13 +75,16 @@ class InteractiveBrokersReadWriter(ReadWriter):
                     currency: str = str(row["Currency"])
 
                     # Fix strange Interactive Brokers convention of setting AUD as quanity and USD amount as proceeds.
-                    # Possibly a result of indirect quoting. Swapping quantity/proceeds and changing indirect quote
-                    # to a direct one.
+                    # Possibly a result of indirect quoting. Swapping quantity/proceeds and AUD.USD to USD.AUD.
                     if asset_category == "Forex":
                         if symbol == "AUD.USD":
                             trades.append(Trade(symbol,
                                                 date_time,
-                                                1 / price,  # NB: converted to direct quote.
+                                                1 / price,  # NB: converted to USD.AUD.
+                                                # This is a bit of a hack as there should be a conversion class to
+                                                # handle this. Keep as market convention quote, convert all floats to
+                                                # Amounts which contain Currency and have a translater divide or
+                                                # multiply as required to convert.
                                                 "AUD", # Hack: Report seems to use USD?
                                                 proceeds,
                                                 commission))
