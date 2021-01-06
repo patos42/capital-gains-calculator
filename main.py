@@ -8,7 +8,7 @@ from foreign_asset_translator import ForeignAssetTranslator
 from read_writer import InteractiveBrokersReadWriter
 from inventory_accounting import FirstInFirstOutInventory, MatchedInventory
 from proceeds_calculator import ForeignCurrencyProceedsCalculator
-from model import Trade, TaxableTrade
+from model import Trade, TranslatedTrade
 
 
 def main() -> None:
@@ -29,10 +29,10 @@ def main() -> None:
 
     rba_rates = file_reader.read_rba_rates(fx_rate_file_path)
     translator = ForeignAssetTranslator(rba_rates)
-    foreign_currency_proceeds_calculator = ForeignCurrencyProceedsCalculator(FirstInFirstOutInventory[TaxableTrade]())
+    foreign_currency_proceeds_calculator = ForeignCurrencyProceedsCalculator(FirstInFirstOutInventory[TranslatedTrade]())
     taxable_trades = translator.convert_trades(trades)
-    trades_with_fx_proceeds : List[TaxableTrade] = foreign_currency_proceeds_calculator.calculate_proceeds(taxable_trades)
-    matched_trades: List[MatchedInventory[TaxableTrade]] = FirstInFirstOutInventory[TaxableTrade]().match_trades(trades_with_fx_proceeds)
+    trades_with_fx_proceeds : List[TranslatedTrade] = foreign_currency_proceeds_calculator.calculate_proceeds(taxable_trades)
+    matched_trades: List[MatchedInventory[TranslatedTrade]] = FirstInFirstOutInventory[TranslatedTrade]().match_trades(trades_with_fx_proceeds)
     capital_gains_aggregator : CapitalGainsTaxAggregator = CapitalGainsTaxAggregator(DiscountCapitalGainsTaxMethod())
     gains: List[CapitalGainsTax] = capital_gains_aggregator.calculate(existing_capital_losses, matched_trades)
     file_reader.write_capital_gains("./test_data/gains.csv", gains)

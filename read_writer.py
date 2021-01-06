@@ -1,6 +1,6 @@
 import csv
 from typing import List, Dict
-from model import Trade, Amount, TaxableTrade
+from model import Trade, Amount, TranslatedTrade
 from capital_gains_tax import CapitalGainsTax
 from abc import ABC, abstractmethod
 from datetime import datetime
@@ -55,7 +55,7 @@ class ReadWriter(ABC):
                                   str(gain.sell_commission)]
                 writer.writerow(row)
 
-    def write_trades(self, file_path : str, trades: List[TaxableTrade]) -> None:
+    def write_trades(self, file_path : str, trades: List[TranslatedTrade]) -> None:
         with open(file_path, mode='w') as file:
             writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             with open(file_path, mode='w') as file:
@@ -70,9 +70,9 @@ class ReadWriter(ABC):
                                       str(trade.quantity),
                                       str(trade.commission.value),
                                       str(trade.commission.currency),
-                                      str(trade.aud_price),
+                                      str(trade.translated_price),
                                       str(trade.exchange_rate),
-                                      str(trade.aud_commission)]
+                                      str(trade.translated_commission)]
                     writer.writerow(row)
 
 class InteractiveBrokersReadWriter(ReadWriter):

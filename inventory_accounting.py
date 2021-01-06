@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 _ROUNDING_TOLERANCE = 1e-6
 
-T = TypeVar('T', Trade, TaxableTrade)
+T = TypeVar('T', Trade, TranslatedTrade)
 
 class CurrentBalance(Dict[str, float]):
     asset_code: str

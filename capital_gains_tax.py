@@ -1,18 +1,18 @@
 from abc import ABC, abstractmethod
 from inventory_accounting import MatchedInventory
-from model import TaxableTrade
+from model import TranslatedTrade
 from typing import Final, List
 from datetime import datetime
 
 
 class CapitalGainsTax:
     def __init__(self,
-                 matched_inventory: MatchedInventory[TaxableTrade],
+                 matched_inventory: MatchedInventory[TranslatedTrade],
                  taxable_gain: float,
                  carried_capital_losses: float,
                  buy_commission: float,
                  sell_commission: float):
-        self.matched_inventory: Final[MatchedInventory[TaxableTrade]] = matched_inventory
+        self.matched_inventory: Final[MatchedInventory[TranslatedTrade]] = matched_inventory
         self.taxable_gain: Final = taxable_gain
         self.carried_capital_losses: Final = carried_capital_losses
         self.buy_commission: Final = buy_commission
@@ -23,7 +23,7 @@ class CapitalGainsTaxMethod(ABC):
     @abstractmethod
     def calculate_taxable_gain(self,
                                carried_capital_losses: float,
-                               matched_inventory: MatchedInventory[TaxableTrade]) -> CapitalGainsTax:
+                               matched_inventory: MatchedInventory[TranslatedTrade]) -> CapitalGainsTax:
         ...
 
 
@@ -32,13 +32,15 @@ class CapitalGainsTaxMethod(ABC):
 # Calculates the CGT gain or carried losses for a set of trades.
 class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
     def calculate_taxable_gain(self, carried_capital_losses: float,
-                               matched_inventory: MatchedInventory[TaxableTrade]) -> CapitalGainsTax:
+                               matched_inventory: MatchedInventory[TranslatedTrade]) -> CapitalGainsTax:
         if carried_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
+        if matched_inventory.sell_trade.translated_currency != 'AUD' \
+                or matched_inventory.buy_trade.translated_currency != 'AUD':
+            raise ValueError("CGT can only be calculated on trades translated to AUD.")
 
-
-        buy_side_pro_rata_commission : float = matched_inventory.buy_trade.aud_commission * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
-        sell_side_pro_rata_commission: float = matched_inventory.sell_trade.aud_commission * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
+        buy_side_pro_rata_commission : float = matched_inventory.buy_trade.translated_commission * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
+        sell_side_pro_rata_commission: float = matched_inventory.sell_trade.translated_commission * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
         taxable_gain: float = (matched_inventory.sell_trade.price - matched_inventory.buy_trade.price) \
                               * matched_inventory.quantity \
                               + sell_side_pro_rata_commission + buy_side_pro_rata_commission # Adding negative number.
@@ -89,7 +91,7 @@ class CapitalGainsTaxAggregator:
         self._capital_gains_tax_method: Final = capital_gains_tax_method
 
     # existing_capital_losses as negative number.
-    def calculate(self, existing_capital_losses: float, trades: List[MatchedInventory[TaxableTrade]]) -> List[CapitalGainsTax]:
+    def calculate(self, existing_capital_losses: float, trades: List[MatchedInventory[TranslatedTrade]]) -> List[CapitalGainsTax]:
         if existing_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
 

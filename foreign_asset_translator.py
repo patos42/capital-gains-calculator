@@ -1,7 +1,7 @@
 from profile import DatedProfile, LeftPiecewiseConstantProfile
 from typing import List, Final, Dict
 from datetime import datetime
-from model import Trade, TaxableTrade
+from model import Trade, TranslatedTrade
 
 # Converts foreign asset transactions to AUD equivalents and creates implied
 # FX trades using provided ATO mandated rates (from the RBA at the time of writing).
@@ -20,7 +20,7 @@ class ForeignAssetTranslator:
             for asset_code in fx_rates:
                 self.fx_profiles[asset_code] = LeftPiecewiseConstantProfile(asset_code, fx_rates[asset_code])
 
-        def convert_trade(self, trade : Trade) -> TaxableTrade:
+        def convert_trade(self, trade : Trade) -> TranslatedTrade:
             aud_price : float
             aud_commission : float
             price_fx_rate : float
@@ -37,10 +37,10 @@ class ForeignAssetTranslator:
             else:
                 aud_commission = trade.commission.value
 
-            return TaxableTrade(trade, aud_price, price_fx_rate, aud_commission)
+            return TranslatedTrade(trade, aud_price, price_fx_rate, aud_commission, 'AUD')
 
-        def convert_trades(self, trades : List[Trade]) -> List[TaxableTrade]:
-            converted_trades : List[TaxableTrade] = []
+        def convert_trades(self, trades : List[Trade]) -> List[TranslatedTrade]:
+            converted_trades : List[TranslatedTrade] = []
             for trade in trades:
                 converted_trades.append(self.convert_trade(trade))
             return converted_trades

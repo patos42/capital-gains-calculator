@@ -33,15 +33,17 @@ class Trade:
                                  "asset_code currency pair.")
 
 
-class TaxableTrade(Trade):
+class TranslatedTrade(Trade):
     def __init__(self,
                  trade: Trade,
-                 aud_price: float,
+                 translated_price: float,
                  exchange_rate: float,
-                 aud_commission: float):
+                 translated_commission: float,
+                 translated_currency: str):
         super().__init__(trade.asset_code, trade.date, trade.price, trade.currency, trade.quantity, trade.commission)
-        self.aud_price: Final = aud_price
-        self.aud_commission: Final = aud_commission
+        self.translated_price: Final = translated_price
+        self.translated_commission: Final = translated_commission
         self.exchange_rate: Final = exchange_rate
+        self.translated_currency: Final = translated_currency
 
 
