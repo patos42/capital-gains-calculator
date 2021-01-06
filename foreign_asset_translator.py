@@ -16,20 +16,31 @@ from model import Trade, TaxableTrade
 # institution through which your foreign income is received, or another reliable external source ."
 class ForeignAssetTranslator:
         def __init__(self, fx_rates : Dict[str,Dict[datetime, float]]):
-            self.fx_profiles = Dict[str,DatedProfile[float]]()
+            self.fx_profiles: Dict[str,DatedProfile[float]] = dict()
             for asset_code in fx_rates:
                 self.fx_profiles[asset_code] = LeftPiecewiseConstantProfile(asset_code, fx_rates[asset_code])
 
         def convert_trade(self, trade : Trade) -> TaxableTrade:
-            taxable_trade : TaxableTrade
+            aud_price : float
+            aud_commission : float
+            price_fx_rate : float
             if trade.currency != 'AUD':
-                fx_rate = self.fx_profiles[trade.currency][trade.date]
-                aud_price = trade.price * fx_rate
-                return TaxableTrade(trade, aud_price, fx_rate)
-            return TaxableTrade(trade, trade.price, 1)
+                price_fx_rate =  self.fx_profiles[trade.currency + '.AUD'][trade.date]
+                aud_price = trade.price * price_fx_rate
+            else:
+                aud_price = trade.price
+                price_fx_rate = 1
+
+            if trade.commission.currency != "AUD":
+                commission_fx_rate = self.fx_profiles[trade.commission.currency+ '.AUD'][trade.date]
+                aud_commission = trade.commission.value * commission_fx_rate
+            else:
+                aud_commission = trade.commission.value
+
+            return TaxableTrade(trade, aud_price, price_fx_rate, aud_commission)
 
         def convert_trades(self, trades : List[Trade]) -> List[TaxableTrade]:
-            converted_trades : List[TaxableTrade] = List[TaxableTrade]()
+            converted_trades : List[TaxableTrade] = []
             for trade in trades:
                 converted_trades.append(self.convert_trade(trade))
             return converted_trades

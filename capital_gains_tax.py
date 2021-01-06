@@ -36,8 +36,9 @@ class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
         if carried_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
 
-        buy_side_pro_rata_commission : float = matched_inventory.buy_trade.commission * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
-        sell_side_pro_rata_commission: float = matched_inventory.sell_trade.commission * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
+
+        buy_side_pro_rata_commission : float = matched_inventory.buy_trade.aud_commission * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
+        sell_side_pro_rata_commission: float = matched_inventory.sell_trade.aud_commission * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
         taxable_gain: float = (matched_inventory.sell_trade.price - matched_inventory.buy_trade.price) \
                               * matched_inventory.quantity \
                               + sell_side_pro_rata_commission + buy_side_pro_rata_commission # Adding negative number.

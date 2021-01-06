@@ -3,3 +3,5 @@ venv3.8
 trades2.csv
 venv3.9
 __pycache__
+workspace.xml
+.DS_Store
