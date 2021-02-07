@@ -25,16 +25,18 @@ class ForeignCurrencyProceedsCalculator:
                 # ATO translates all foreign assets to AUD for tax purposes on trade. If there is a foreign
                 # currency gain/loss then the fx cost base is the ATO fx rate at sale.
                 proxy_trade = Trade(matched_trade.sell_trade.currency + '.AUD',
+                                    'FOREX',
                                     matched_trade.sell_trade.date,
                                     matched_trade.sell_trade.exchange_rate,
                                     'AUD',
                                     proceeds,
-                                    Amount(0, 'AUD'))
+                                    Amount(0, 'AUD'),
+                                    'SALE_PROCEEDS')
 
                 # Set the FX rate/price to the ATO-based FX rate used on selling the underlying asset.
                 taxable_proxy_trade = TranslatedTrade(proxy_trade,
-                                                      proceeds * matched_trade.sell_trade.exchange_rate,
                                                       matched_trade.sell_trade.exchange_rate,
+                                                      1,
                                                       0, 'AUD')
                 proceed_trades.append(taxable_proxy_trade)
 
@@ -42,14 +44,16 @@ class ForeignCurrencyProceedsCalculator:
             if matched_trade.buy_trade.commission.currency != 'AUD':
                 proportion_matched = matched_trade.quantity / abs(matched_trade.buy_trade.quantity)
                 proxy_trade = Trade(matched_trade.buy_trade.currency + '.AUD',
+                                    'FOREX',
                                     matched_trade.buy_trade.date,
                                     matched_trade.buy_trade.exchange_rate,
                                     'AUD',
                                     proportion_matched * matched_trade.buy_trade.commission.value,
-                                    Amount(0, 'AUD'))
+                                    Amount(0, 'AUD'),
+                                    'COMMISSION')
                 taxable_proxy_trade = TranslatedTrade(proxy_trade,
-                                                      proportion_matched * matched_trade.buy_trade.commission.value * matched_trade.buy_trade.exchange_rate,
-                                                      matched_trade.sell_trade.exchange_rate,
+                                                      proportion_matched * matched_trade.buy_trade.exchange_rate,
+                                                      1,
                                                       0, 'AUD')
                 proceed_trades.append(taxable_proxy_trade)
 
@@ -57,14 +61,16 @@ class ForeignCurrencyProceedsCalculator:
             if matched_trade.sell_trade.commission.currency != 'AUD':
                 proportion_matched = matched_trade.quantity / abs(matched_trade.sell_trade.quantity)
                 proxy_trade = Trade(matched_trade.sell_trade.currency + '.AUD',
+                                    'FOREX',
                                     matched_trade.sell_trade.date,
                                     matched_trade.sell_trade.exchange_rate,
                                     'AUD',
                                     proportion_matched * matched_trade.sell_trade.commission.value,
-                                    Amount(0, 'AUD'))
+                                    Amount(0, 'AUD'),
+                                    'COMMISSION')
                 taxable_proxy_trade = TranslatedTrade(proxy_trade,
-                                                      proportion_matched * matched_trade.sell_trade.commission.value * matched_trade.sell_trade.exchange_rate,
-                                                      matched_trade.sell_trade.exchange_rate,
+                                                      proportion_matched * matched_trade.sell_trade.exchange_rate,
+                                                      1,
                                                       0, 'AUD')
                 proceed_trades.append(taxable_proxy_trade)
 

@@ -39,14 +39,17 @@ class ReadWriter(ABC):
     def write_capital_gains(self, file_path: str, gains: List[CapitalGainsTax]) -> None:
         with open(file_path, mode='w') as file:
             writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            header: List[str] = ['asset_code', 'buy_price', 'buy_date', 'sell_price', 'sell_date', 'quantity',
-                                 'taxable_gain', 'carried_capital_losses', 'buy_commission', 'sell_commission']
+            header: List[str] = ['asset_code', 'buy_price', 'translated_buy_price', 'buy_date', 'sell_price',
+                                 'translated_sell_price','sell_date', 'quantity', 'taxable_gain',
+                                'carried_capital_losses', 'buy_commission', 'sell_commission']
             writer.writerow(header)
             for gain in gains:
                 row: List[str] = [gain.matched_inventory.buy_trade.asset_code,
                                   str(gain.matched_inventory.buy_trade.price),
+                                  str(gain.matched_inventory.buy_trade.translated_price),
                                   str(gain.matched_inventory.buy_trade.date),
                                   str(gain.matched_inventory.sell_trade.price),
+                                  str(gain.matched_inventory.sell_trade.translated_price),
                                   str(gain.matched_inventory.sell_trade.date),
                                   str(gain.matched_inventory.quantity),
                                   str(gain.taxable_gain),
@@ -60,7 +63,8 @@ class ReadWriter(ABC):
             writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             with open(file_path, mode='w') as file:
                 header: List[str] = ['asset_code', 'date', 'price', 'currency', 'quantity', 'commission.value',
-                                     'commission.currency', 'aud_price', 'exchange_rate', 'aud_commission']
+                                     'commission.currency', 'aud_price', 'exchange_rate', 'aud_commission',
+                                     'trade_source']
                 writer.writerow(header)
                 for trade in trades:
                     row: List[str] = [trade.asset_code,
@@ -72,7 +76,8 @@ class ReadWriter(ABC):
                                       str(trade.commission.currency),
                                       str(trade.translated_price),
                                       str(trade.exchange_rate),
-                                      str(trade.translated_commission)]
+                                      str(trade.translated_commission),
+                                      str(trade.source)]
                     writer.writerow(row)
 
 class InteractiveBrokersReadWriter(ReadWriter):
@@ -108,13 +113,16 @@ class InteractiveBrokersReadWriter(ReadWriter):
         commission: float = float(row["Comm/Fee"].replace(",", ""))
         symbol: str = str(row["Symbol"])
         currency: str = str(row["Currency"])
+        asset_category: str = str(row["Asset Category"]).upper()
         effective_price = abs(proceeds / quantity)
         return Trade(symbol,
+                     asset_category,
                      date_time,
                      effective_price,
                      currency,
                      quantity,
-                     Amount(commission, currency))
+                     Amount(commission, currency),
+                     'BROKER_REPORT')
 
     def _process_forex(self, row : Dict[str, str]) ->Trade:
         date_time = datetime.strptime(row["Date/Time"],
@@ -125,11 +133,13 @@ class InteractiveBrokersReadWriter(ReadWriter):
         commission: float = float(row["Comm in AUD"].replace(",", ""))
         symbol: str = str(row["Symbol"])
         currency: str = str(row["Currency"])
+        asset_category: str = str(row["Asset Category"].upper())
 
         # Fix strange Interactive Brokers convention of setting AUD as quanity and USD amount as proceeds.
         # Possibly a result of indirect quoting. Swapping quantity/proceeds and AUD.USD to USD.AUD.
         if symbol == "AUD.USD":
             return Trade("USD.AUD",
+                                asset_category,
                                 date_time,
                                 1 / price,  # NB: converted to USD.AUD.
                                 # This is a bit of a hack as there should be a conversion class to
@@ -138,7 +148,8 @@ class InteractiveBrokersReadWriter(ReadWriter):
                                 # multiply as required to convert.
                                 "AUD",  # Hack: Report seems to use USD?
                                 proceeds,
-                                Amount(commission, "AUD"))
+                                Amount(commission, "AUD"),
+                                'BROKER_REPORT')
         else:
             raise NotImplementedError(
                 "Only AUD.USD currency trades implemented as I am unsure how IB treats other currencies.")

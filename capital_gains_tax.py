@@ -31,19 +31,41 @@ class CapitalGainsTaxMethod(ABC):
 # https://www.ato.gov.au/general/capital-gains-tax/working-out-your-capital-gain-or-loss/working-out-your-capital-gain/the-discount-method-of-calculating-your-capital-gain/
 # Calculates the CGT gain or carried losses for a set of trades.
 class DiscountCapitalGainsTaxMethod(CapitalGainsTaxMethod):
-    def calculate_taxable_gain(self, carried_capital_losses: float,
-                               matched_inventory: MatchedInventory[TranslatedTrade]) -> CapitalGainsTax:
+    def calculate_taxable_gain(self,
+                               carried_capital_losses: float,
+                               matched_inventory: MatchedInventory[TranslatedTrade]) -> CapitalGainsTax: # ToDo: change to Trade. Add translater to constructor.
         if carried_capital_losses > 0:
             raise ValueError("Capital losses cannot be a positive number.")
         if matched_inventory.sell_trade.translated_currency != 'AUD' \
                 or matched_inventory.buy_trade.translated_currency != 'AUD':
             raise ValueError("CGT can only be calculated on trades translated to AUD.")
 
-        buy_side_pro_rata_commission : float = matched_inventory.buy_trade.translated_commission * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
-        sell_side_pro_rata_commission: float = matched_inventory.sell_trade.translated_commission * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
-        taxable_gain: float = (matched_inventory.sell_trade.price - matched_inventory.buy_trade.price) \
-                              * matched_inventory.quantity \
-                              + sell_side_pro_rata_commission + buy_side_pro_rata_commission # Adding negative number.
+        buy_side_pro_rata_commission: float
+        sell_side_pro_rata_commission: float
+        taxable_gain: float
+        if matched_inventory.buy_trade.asset_category == 'FOREX': # This could be all funded trades.
+            buy_side_pro_rata_commission = matched_inventory.buy_trade.translated_commission \
+                                           * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
+            sell_side_pro_rata_commission = matched_inventory.sell_trade.translated_commission \
+                                            * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
+            taxable_gain = (matched_inventory.sell_trade.translated_price - matched_inventory.buy_trade.translated_price) \
+                                  * matched_inventory.quantity \
+                                  + sell_side_pro_rata_commission + buy_side_pro_rata_commission # Adding negative number.
+        # Additional rationale: Since futures are unfunded, there are no fx gains or losses between buying and selling,
+        # whereas a funded purchase like stocks would, even if buy and sell prices are the same.
+        # e.g., Buy SP500 futures for (unfunded) USD 100K, sell for USD 100K. Profit from futures is zero. No economic
+        # translation gaines/losses as there is no exchange of USD.
+        elif matched_inventory.buy_trade.asset_category == 'FUTURES': # This method could probably cover all unfunded trades
+            buy_side_pro_rata_commission = matched_inventory.buy_trade.commission.value \
+                                           * matched_inventory.quantity / abs(matched_inventory.buy_trade.quantity)
+            sell_side_pro_rata_commission = matched_inventory.sell_trade.commission.value \
+                                            * matched_inventory.quantity / abs(matched_inventory.sell_trade.quantity)
+            special_accrual_amount = (matched_inventory.sell_trade.price - matched_inventory.buy_trade.price) \
+                           * matched_inventory.quantity \
+                           + sell_side_pro_rata_commission + buy_side_pro_rata_commission  # Adding negative number.
+            taxable_gain = special_accrual_amount * matched_inventory.sell_trade.exchange_rate
+        else:
+            raise NotImplementedError('Tax treatment for asset classes other than forex and futures have not been implemented.')
 
         # Net any carried losses before any potential discounts.
         remaining_carried_capital_losses: float
